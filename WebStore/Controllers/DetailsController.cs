@@ -1,34 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WebStore.BLL.Interfaces;
-using WebStore.BLL.Model;
 using WebStore.Models;
 
 namespace WebStore.Controllers
 {
-    public class HomeController : Controller
+    public class DetailsController : Controller
     {
         IEmployeeService _employeeSvc;
 
-        public HomeController(IEmployeeService employeeSvc)
+        public DetailsController(IEmployeeService employeeSvc)
         {
             _employeeSvc = employeeSvc ?? throw new ArgumentNullException(nameof(employeeSvc));
         }
-        
-        public IActionResult Index()
-        {
-            return View(_employeeSvc.GetAllEmployees().Select(x => GetUI(x)));
-        }
 
-        EmployeeView GetUI(Employee employee)
+        public IActionResult View(int id)
         {
             var ui = new EmployeeView();
+            ui.FromBll(_employeeSvc.GetEmployee(id));
 
-            ui.FromBll(employee);
-
-            return ui;
+            return View(ui);
         }
     }
 }

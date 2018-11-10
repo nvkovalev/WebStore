@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebStore.BLL.Implementation;
+using WebStore.BLL.Interfaces;
 
 namespace WebStore
 {
@@ -25,6 +27,8 @@ namespace WebStore
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IEmployeeService, EmployeeService>();
+
             //Добавляем сервисы, необходимые для mvc
             services.AddMvc();
         }

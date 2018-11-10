@@ -1,0 +1,27 @@
+﻿@model WebStore.Models.EmployeeView
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" charset="utf-8" />
+    <title>@Model.ToString()</title>
+</head>
+<body>
+    <table>
+
+        <tr><td>@Model.FirstName</td></tr>
+        <tr><td>@Model.SurName</td></tr>
+        <tr><td>@Model.Patronymic</td></tr>
+        <tr><td>@Model.Age</td></tr>
+        <tr><td>@Model.Position</td></tr>
+        <tr><td>@Model.BirthDate</td></tr>
+        <tr><td>@Html.ActionLink("Назад", "Index", "Home") </td></tr>
+
+    </table>
+</body>
+</html>
