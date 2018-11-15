@@ -8,7 +8,9 @@ namespace WebStore.BLL.Interfaces
 {
     public interface IEmployeeService
     {
-        IEnumerable<Employee> GetAllEmployees();
-        Employee GetEmployee(int id);
+        IEnumerable<Employee> GetAll();
+        Employee GetById(int id);
+        void AddNew(Employee employee);
+        void Delete(int id);
     }
 }
