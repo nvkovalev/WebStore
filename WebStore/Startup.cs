@@ -27,7 +27,7 @@ namespace WebStore
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IEmployeeService, EmployeeService>();
+            services.AddSingleton<IEmployeeService, InMemoryEmployeeService>();
 
             //Добавляем сервисы, необходимые для mvc
             services.AddMvc();
@@ -40,15 +40,23 @@ namespace WebStore
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseWelcomePage("/welcome");
+
             //Добавляем расширение для использования статических файлов, т.к. appsettings.json - это статический файл
             app.UseStaticFiles();
 
             //Добавляем обработку запросов в mvc-формате
             app.UseMvc(routes =>
             {
+                //routes.MapRoute("catalogRoute", 
+                //    template: "catalog/{section?}", 
+                //    defaults: new { controller = "Home", action = "Shop" });
+
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller}/{action}",
+                    defaults: new { controller = "Home", action = "Index" }
+                    );
             });
         }
     }

@@ -24,6 +24,23 @@ namespace WebStore.Models
             Position = bll.Position;
             BirthDate = bll.BirthDate;
         }
+        
+        public Employee FromUI()
+        {
+            var bll = new Employee
+            {
+
+                Id = Id,
+                FirstName = FirstName,
+                SurName = SurName,
+                Patronymic = Patronymic,
+                Age = Age,
+                Position = Position,
+                BirthDate = BirthDate,
+            };
+
+            return bll;
+        }
 
         public override string ToString()
         {
